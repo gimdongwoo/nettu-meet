@@ -20,7 +20,7 @@ module.exports = {
       ACCOUNT_NAME: 'nettumeet',
       ACCOUNT_LABEL: 'Nettu Meet',
       ACCOUNT_SECRET_KEY: 'nettu_meet_default_secret',
-      ACCOUNT_REDIRECT_URI: 'ACCOUNT_REDIRECT_URI',
+      ACCOUNT_REDIRECT_URI: 'http://localhost:3000',
       ACCOUNT_REDIRECT_URIS: '',
       NETTU_IS_PRODUCTION: 'false'
     }
