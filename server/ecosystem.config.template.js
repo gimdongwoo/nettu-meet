@@ -8,6 +8,7 @@ module.exports = {
     env: {
       NETTU_REDIS_HOST: 'localhost',
       NETTU_REDIS_PORT: '6379',
+      NETTU_REDIS_PASSWORD: '',
       MONGODB_CONNECTION_STRING: 'mongodb://root:rootpassword@localhost:27017',
       MONGODB_NAME: 'nettu-meeting',
       FRONTEND_URL: 'http://localhost:3000',
