@@ -1,3 +1,4 @@
+/* eslint-disable */
 module.exports = {
   apps : [{
     name: 'nettu-meet',
