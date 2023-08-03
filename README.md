@@ -26,7 +26,10 @@
 
 ## Live demo
 
-[Live demo](https://meet.nettubooking.com) 
+[Live demo](https://meet.nettubooking.com)
+
+## Requirements
+* Node.js 16
 
 ## Run it locally
 * Run the Node.js server application in a terminal:

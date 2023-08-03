@@ -10,7 +10,7 @@ import {
     RtpEncodingParameters,
     WebRtcTransport,
     Worker,
-} from 'mediasoup/lib/types';
+} from 'mediasoup/node/lib/types';
 import { config } from './config';
 
 const mediasoupWorkers: Worker[] = [];
@@ -73,7 +73,7 @@ export interface RoomState {
     // external
     id: string;
     peers: Record<string, Peer>;
-    activeSpeaker: { producerId: null; volume: null; peerId: null };
+    activeSpeaker: { producerId: string | null; volume: number | null; peerId: string | null };
     // internal
     transports: Record<string, WebRtcTransport>;
     producers: Producer[];
@@ -109,7 +109,7 @@ export const createRoom = async (roomId: string): Promise<RoomState> => {
         if (!room) return;
         room.activeSpeaker.producerId = producer.id;
         room.activeSpeaker.volume = volume;
-        room.activeSpeaker.peerId = producer.appData.peerId;
+        room.activeSpeaker.peerId = producer.appData.peerId as string;
     });
     audioLevelObserver.on('silence', () => {
         console.log('audio-level silence event');

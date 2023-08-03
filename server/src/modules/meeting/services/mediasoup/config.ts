@@ -1,4 +1,4 @@
-import { RtpCodecCapability, TransportListenIp, WorkerSettings } from 'mediasoup/lib/types';
+import { RtpCodecCapability, TransportListenIp, WorkerSettings } from 'mediasoup/node/lib/types';
 import { isProduction } from '../../../../config';
 
 export const config = {

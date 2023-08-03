@@ -1,5 +1,5 @@
 import express from 'express';
-import { Consumer, MediaKind, Producer, RtpCapabilities, WebRtcTransport } from 'mediasoup/lib/types';
+import { Consumer, MediaKind, Producer, RtpCapabilities, WebRtcTransport } from 'mediasoup/node/lib/types';
 import { io } from '../../../../shared/infra/http/app';
 import { meetingRepo } from '../../repos';
 import { config } from './config';
@@ -203,8 +203,8 @@ signalingRouter.post('/init-consumers', async (req, res) => {
             if (producer.appData.peerId !== peerId) {
                 createConsumer({
                     producer,
-                    mediaPeerId: producer.appData.peerId,
-                    mediaTag: producer.appData.mediaTag,
+                    mediaPeerId: producer.appData.peerId as string,
+                    mediaTag: producer.appData.mediaTag as string,
                     peerId,
                     room,
                     rtpCapabilities: room.router!.rtpCapabilities,
@@ -283,8 +283,8 @@ async function closeProducer(producer: Producer, room: RoomState) {
         room.producers = room.producers.filter((p) => p.id !== producer.id);
 
         // remove this track's info from our roomState...mediaTag bookkeeping
-        if (room.peers[producer.appData.peerId]) {
-            delete room.peers[producer.appData.peerId].media[producer.appData.mediaTag];
+        if (room.peers[producer.appData.peerId as string]) {
+            delete room.peers[producer.appData.peerId as string].media[producer.appData.mediaTag as string];
         }
     } catch (e) {
         console.error(e);
@@ -299,8 +299,8 @@ async function closeConsumer(consumer: Consumer, room: RoomState) {
     room.consumers = room.consumers.filter((c) => c.id !== consumer.id);
 
     // remove layer info from from our roomState...consumerLayers bookkeeping
-    if (room.peers[consumer.appData.peerId]) {
-        delete room.peers[consumer.appData.peerId].consumerLayers[consumer.id];
+    if (room.peers[consumer.appData.peerId as string]) {
+        delete room.peers[consumer.appData.peerId as string].consumerLayers[consumer.id];
     }
 }
 
@@ -791,7 +791,7 @@ signalingRouter.post('/pause-producer', async (req, res) => {
 
         await producer.pause();
 
-        room.peers[peerId].media[producer.appData.mediaTag].paused = true;
+        room.peers[peerId].media[producer.appData.mediaTag as string].paused = true;
 
         res.send({ paused: true });
     } catch (e) {
@@ -823,7 +823,7 @@ signalingRouter.post('/resume-producer', async (req, res) => {
 
         await producer.resume();
 
-        room.peers[peerId].media[producer.appData.mediaTag].paused = false;
+        room.peers[peerId].media[producer.appData.mediaTag as string].paused = false;
 
         res.send({ resumed: true });
     } catch (e) {
