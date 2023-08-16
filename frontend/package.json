@@ -56,5 +56,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "yarn": "Use npm instead",
+    "node": ">=16.20.0 <17",
+    "npm": ">=8.19.2"
   }
 }
